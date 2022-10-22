@@ -9,14 +9,6 @@ import './assets/global.css'
 import { ThemeProvider } from '@context/theme'
 
 export default function Root() {
-  if (typeof window !== 'undefined') {
-    (window as any).dataLayer = (window as any).dataLayer || []
-    const gtag = (...args: any[]) => {
-      (window as any).dataLayer!.push(args)
-    }
-    gtag('js', new Date())
-    gtag('config', 'G-K0NZ9F7NQW')
-  }
   return (
     <Html lang="en">
       <Head>
@@ -28,7 +20,6 @@ export default function Root() {
         <Link rel="apple-touch-icon" href="/pwa-192x192.png" sizes="192x192" />
         <Meta name="theme-color" content="#202A37" />
         <Title>Nook</Title>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-K0NZ9F7NQW"></script>
       </Head>
       <Body class="bg-gray-50">
         <ErrorBoundary>
@@ -47,9 +38,6 @@ export default function Root() {
                   duration: 5000,
                 }}
               />
-              <div class="w-[100vw] text-center text-gray-400 text-sm">
-                built with ❤️ using <u><a target="_blank" rel="noreferrer" href="https://bat.glo.quebec">🦇</a></u>
-              </div>
             </ThemeProvider>
           </Suspense>
         </ErrorBoundary>

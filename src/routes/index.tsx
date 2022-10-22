@@ -129,7 +129,7 @@ export default function() {
           <For each={features}>{(feature, index) => <Feature {...feature} left={index() % 2 !== 0} />}</For>
         </ul>
       </div>
-      <div id="download" ref={backgroundDom} class="flex relative flex-center h-[100vh]">
+      <div id="download" ref={backgroundDom} class="flex flex-col relative flex-center h-[100vh]">
         <h2 class="absolute max-w-full top-16 text-8xl uppercase font-black whitespace-nowrap  overflow-hidden">oon coming soon coming soon coming soon coming soon coming soon coming soon coming soon coming soon coming soon coming soon</h2>
         <div ref={card} class="flip">
           <div class="flip-content py-48 text-center w-[600px] rounded-xl shadow-2xl bg-gradient-to-b from-[#FFC0FF] to-[#FFB5DD]">
@@ -138,7 +138,7 @@ export default function() {
               <Show when={!success()}
                 fallback={() => (
                   <div class="text-3xl flex text-gray-600 font-black">
-                    <div class="i-carbon-checkmark-filled"/>
+                    <div class="i-carbon-checkmark-filled" />
                     <p class="ml-3">Thank you for subscribing!</p>
                   </div>
                 )}
@@ -168,6 +168,25 @@ export default function() {
               </Show>
             </div>
           </div>
+        </div>
+        <div class="absolute bottom-10 left-0 right-0 flex justify-center">
+          <ul class="flex space-x-5">
+            <li>
+              <a href="https://twitter.com/yournookapp" target="_blank" rel="noreferrer" class="cursor-pointer hover:text-[#ff85dd] transition-colors">
+              <div class="i-carbon-logo-twitter w-7 h-7" />
+              </a>
+            </li>
+            <li>
+              <a href="https://discord.gg/QXRMPDzXds" target="_blank" rel="noreferrer" class="cursor-pointer hover:text-[#ff85dd] transition-colors">
+              <div class="i-carbon-logo-discord w-7 h-7" />
+              </a>
+            </li>
+            <li>
+              <a href="https://bat.glo.quebec/" target="_blank" rel="noreferrer" class="cursor-pointer hover:text-[#ff85dd] transition-colors">
+              <div class="i-carbon-bat w-7 h-7" />
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
