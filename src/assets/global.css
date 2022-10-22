@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .nook-shadow {
+    position: relative;
+    z-index: 1;
+    &:after {
+      z-index: -1;
+      content: "Nook";
+      position: absolute;
+      filter: blur(4px);
+      opacity: 0.5;
+      transform: translate(-10px, 10px);
+      color: #000;
+    }
+  }
+}
+
+@layer utilities {
+  .full {
+    @apply absolute top-0 left-0 right-0 bottom-0;
+  }
+
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+
+  .flip {
+    perspective: 1200px;  
+
+    .flip-content {
+      position: relative;
+      transition: transform 0.4s;
+      transform-style: preserve-3d;
+    }
+
+    &.active  {
+      .flip-content {
+        transform: rotateY(180deg);
+        transition: transform 0.3s;
+      }
+    }
+
+    .flip-front, .flip-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+    }
+
+    .flip-back {
+      transform: rotateY(180deg);
+      transition: transform 0.3s;
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+h1 {
+  @apply text-8xl font-bold;
+}
+
+h2 {
+  @apply text-4xl font-bold;
+}
