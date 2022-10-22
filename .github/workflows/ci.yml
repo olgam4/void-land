@@ -37,6 +37,15 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
 
+      - name: Find and Replace
+        uses: jacobtomlinson/gha-find-replace@2.0.0
+        with:
+          find: "process.env.DATABASE_URL"
+          replace: "$DATABASE_URL"
+          regex: false
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE }}
+
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
@@ -55,4 +64,3 @@ jobs:
         env:
           TOKEN: ${{ secrets.DENOLAND }}
           PROJECT: ${{ secrets.PROJECT }}
-          DATABASE_URL: ${{ secrets.DATABASE }}
