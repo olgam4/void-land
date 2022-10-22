@@ -1,4 +1,4 @@
-// import mysql from 'mysql2'
+import faunadb from 'faunadb'
 
 interface Props {
   request: Request
@@ -7,18 +7,14 @@ interface Props {
 export async function POST({ request }: Props) {
   const { email } = await request.json()
 
-  // const connection = mysql.createConnection(process.env.DATABASE_URL || '')
+  const client = new faunadb.Client({ secret: process.env.FAUNADB || '' })
 
-  // connection.query(
-  //   `INSERT INTO subscribers (email) VALUES ('${email}')`,
-  //   (err, results) => {
-  //     if (err) {
-  //       console.log(err)
-  //     } else {
-  //       console.log(results)
-  //     }
-  //   }
-  // )
+  const q = faunadb.query
+  client.query(
+    q.Create(q.Collection('subscribers'), {
+      data: { email },
+    })
+  )
 
   return new Response('OK', {
     status: 200,
