@@ -21,9 +21,7 @@ export default function Root() {
         <Meta name="theme-color" content="#202A37" />
         <Title>Nook</Title>
       </Head>
-<!-- Pixel Code for https://app.watchthem.live/ -->
 <script defer src="https://app.watchthem.live/pixel/vCqsKqNcRojJq5vd"></script>
-<!-- END Pixel Code -->
       <Body class="bg-gray-50">
         <ErrorBoundary>
           <Suspense>
