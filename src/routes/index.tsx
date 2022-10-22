@@ -17,6 +17,7 @@ export default function() {
   const [value, setValue] = createSignal('')
   const [error, setError] = createSignal(false)
   const [success, setSuccess] = createSignal(false)
+  const [loading, setLoading] = createSignal(false)
 
   const Feature = (props: FeatureProps) => {
     return (
@@ -100,7 +101,9 @@ export default function() {
   const subscribe = (e: any) => {
     e.preventDefault()
 
-    if (!validate()) return
+    if (!validate() || loading()) return
+
+    setLoading(true)
 
     fetch('/api/subscribe', {
       method: 'POST',
@@ -108,7 +111,10 @@ export default function() {
     }).then((res) => {
       if (res.status === 200) {
         setSuccess(true)
+
       }
+    }).finally(() => {
+      setLoading(false)
     })
   }
 
