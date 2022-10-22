@@ -16,6 +16,7 @@ export default function() {
 
   const [value, setValue] = createSignal('')
   const [error, setError] = createSignal(false)
+  const [success, setSuccess] = createSignal(false)
 
   const Feature = (props: FeatureProps) => {
     return (
@@ -99,6 +100,10 @@ export default function() {
     fetch('/api/subscribe', {
       method: 'POST',
       body: JSON.stringify({ email: value() }),
+    }).then((res) => {
+      if (res.status === 200) {
+        setSuccess(true)
+      }
     })
   }
 
@@ -129,29 +134,38 @@ export default function() {
         <div ref={card} class="flip">
           <div class="flip-content py-48 text-center w-[600px] rounded-xl shadow-2xl bg-gradient-to-b from-[#FFC0FF] to-[#FFB5DD]">
             <p class="text-gray-700 text-3xl top-44 flip-front">Subscribe to the <button onClick={onWait} class="cursor-pointer underline underline-offset-4 text-gray-50 font-black ml-2 hover:text-[#A0003A] transition-colors">waiting list</button></p>
-            <div class="flip-back">
-              <form class="absolute flex flex-col justify-around -top-48 p-10 w-full h-full">
-                <div>
-                  <label class="block text-gray-700 text-left text-xl font-bold" for="email">
-                    Enter your email...
-                  </label>
-                  <input
-                    onInput={(e) => { setValue(e.currentTarget.value) }}
-                    id="email"
-                    class="w-full p-4 rounded-xl mb-4"
-                    type="email"
-                    placeholder="john.doe@email.com"
-                    onBlur={validate}
-                  />
-                  <Show when={error()}>
-                    <p class="text-red-500 font-bold">Please enter a valid email</p>
-                  </Show>
-                </div>
-                <input onClick={subscribe} type="submit" class="w-20 p-4 rounded-xl bg-gradient-to-l from-[#FFFADE] to-[#FFF7D0] text-black font-bold self-end cursor-pointer" value="JOIN" />
-              </form>
-              <button class="absolute cursor-pointer -top-44 left-2" onClick={onCancel}>
-                <div class="i-carbon-arrow-left text-white text-3xl" />
-              </button>
+            <div class="flip-back flex justify-center">
+              <Show when={!success()}
+                fallback={() => (
+                  <div class="text-3xl flex text-gray-600 font-black">
+                    <div class="i-carbon-checkmark-filled"/>
+                    <p class="ml-3">Thank you for subscribing!</p>
+                  </div>
+                )}
+              >
+                <form class="absolute flex flex-col justify-around -top-48 p-10 w-full h-full">
+                  <div>
+                    <label class="block text-gray-700 text-left text-xl font-bold" for="email">
+                      Enter your email...
+                    </label>
+                    <input
+                      onInput={(e) => { setValue(e.currentTarget.value) }}
+                      id="email"
+                      class="w-full p-4 rounded-xl mb-4"
+                      type="email"
+                      placeholder="john.doe@email.com"
+                      onBlur={validate}
+                    />
+                    <Show when={error()}>
+                      <p class="text-red-500 font-bold">Please enter a valid email</p>
+                    </Show>
+                  </div>
+                  <input onClick={subscribe} type="submit" class="w-20 p-4 rounded-xl bg-gradient-to-l from-[#FFFADE] to-[#FFF7D0] text-black font-bold self-end cursor-pointer" value="JOIN" />
+                </form>
+                <button class="absolute cursor-pointer -top-44 left-2" onClick={onCancel}>
+                  <div class="i-carbon-arrow-left text-white text-3xl" />
+                </button>
+              </Show>
             </div>
           </div>
         </div>
