@@ -25,19 +25,24 @@ export default function() {
           initial={{ opacity: 0, x: props.left ? -200 : 200 }}
           inView={{ opacity: 1, x: 0 }}
           transition={{ duration: 2 }}
-          class={`flex p-10 shadow-black shadow-2xl bg-gradient-to-l from-[#FFB5DD] to-[#FFC0FF] w-7/12 text-[#2f4858] rounded-xl mb-12 ${props.left && 'ml-auto'}`}
+          class={`flex flex-col sm:flex-row p-10 w-full shadow-black shadow-2xl bg-gradient-to-l from-[#FFB5DD] to-[#FFC0FF] sm:w-7/12 text-[#2f4858] rounded-xl mb-12 ${props.left && 'sm:ml-auto'}`}
         >
           <div>
             <h3 class="text-2xl font-bold">{props.title}</h3>
             <p>{props.content}</p>
           </div>
-          <img width="50%" srcset={`/assets/${props.image}`} />
+          <img class="w-[90%] mt-2 sm:mt-0 sm:w-[50%]" srcset={`/assets/${props.image}`} />
         </Motion.div>
       </li>
     )
   }
 
   const features: { content: string, title: string, image: string }[] = [
+    {
+      title: 'Use your files',
+      content: 'Nook uses your file system to store your notes. This means that your notes are always available wherever you are, right there on the disk.',
+      image: 'file.svg'
+    },
     {
       title: 'Markdown',
       content: 'Write your notes in Markdown, and Nook will render them for you. Use Mermaid and KaTex to create diagrams and math equations.',
@@ -110,30 +115,30 @@ export default function() {
   return (
     <div>
       <div class="flex flex-col h-[100vh] w-[100vw] bg-gradient-to-tr from-[#ffafbd] to-[#ffc3a0]">
-        <nav class="md:absolute mt-4 md:mt-0 top-16 right-8 z-50">
+        <nav class="hidden sm:block absolute mt-4 md:mt-0 top-16 right-8 z-50">
           <ul class="grid grid-cols-3 text-xl md:gap-6 gap-2 text-white">
             <li class="w-[100px] text-right"><a class="cursor-pointer hover:font-black transition-all" href="#features">Features</a></li>
             <li class="w-[100px] text-right"><a class="cursor-pointer hover:font-black transition-all" href="#download">Download</a></li>
             <li class="w-[160px] text-right"><a class="flex cursor-pointer items-center hover:font-black transition-all" target="_blank" rel="noreferrer" href="https://discord.gg/QXRMPDzXds">Chat with us <div class="i-carbon-arrow-right ml-2" /></a></li>
           </ul>
         </nav>
-        <h1 class="h-[9%] pl-12 text-amber-50 relative nook-shadow flex items-center">Nook</h1>
-        <h2 class="h-[3%] pl-12 text-[#2f4858]">Markdown-Powered Intelligent Knowledge Manager</h2>
+        <h1 class="h-[9%] mt-4 pl-4 sm:pl-12 text-amber-50 relative nook-shadow flex items-center">Nook</h1>
+        <h2 class="h-[3%] mt-4 pl-4 sm:pl-12 text-[#2f4858]">Markdown-Powered Intelligent Knowledge Manager</h2>
         <div class="h-[88%] flex justify-center">
           <Image class="object-contain" src={NookScreenshot} />
         </div>
       </div>
-      <div class="bg-[#2f4858] text-white p-12">
-        <h2 id="features" class="text-8xl mb-12">Features.</h2>
+      <div class="bg-[#2f4858] text-white p-12 overflow-x-clip">
+        <h2 id="features" class="text-4xl sm:text-8xl mb-12">Features.</h2>
         <ul>
           <For each={features}>{(feature, index) => <Feature {...feature} left={index() % 2 !== 0} />}</For>
         </ul>
       </div>
-      <div id="download" ref={backgroundDom} class="flex flex-col relative flex-center h-[100vh]">
-        <h2 class="absolute max-w-full top-16 text-8xl uppercase font-black whitespace-nowrap  overflow-hidden">oon coming soon coming soon coming soon coming soon coming soon coming soon coming soon coming soon coming soon coming soon</h2>
-        <div ref={card} class="flip">
-          <div class="flip-content py-48 text-center w-[600px] rounded-xl shadow-2xl bg-gradient-to-b from-[#FFC0FF] to-[#FFB5DD]">
-            <p class="text-gray-700 text-3xl top-44 flip-front">Subscribe to the <button onClick={onWait} class="cursor-pointer underline underline-offset-4 text-gray-50 font-black ml-2 hover:text-[#A0003A] transition-colors">waiting list</button></p>
+      <div id="download" ref={backgroundDom} class="flex flex-col relative flex-center h-[100vh] overflow-hidden">
+        <h2 class="absolute max-w-full top-16 text-xl md:text-8xl uppercase font-black whitespace-nowrap  overflow-hidden">oon coming soon coming soon coming soon coming soon coming soon coming soon coming soon coming soon coming soon coming soon</h2>
+        <div ref={card} class="flip hidden md:block relative">
+          <div class="flip-content py-48 text-center sm:w-[600px] rounded-xl shadow-2xl bg-gradient-to-b from-[#FFC0FF] to-[#FFB5DD]">
+            <p class="text-gray-700 sm:text-3xl top-0 sm:top-44 flip-front">Subscribe to the <button onClick={onWait} class="cursor-pointer underline underline-offset-4 text-gray-50 font-black ml-2 hover:text-[#A0003A] transition-colors">waiting list</button></p>
             <div class="flip-back flex justify-center">
               <Show when={!success()}
                 fallback={() => (
@@ -169,21 +174,52 @@ export default function() {
             </div>
           </div>
         </div>
+        <div class="sm:hidden w-full py-10 px-6 bg-gradient-to-b from-[#FFC0FF] to-[#FFB5DD]">
+          <Show when={!success()}
+            fallback={() => (
+              <div class="text-3xl flex text-gray-600 font-black">
+                <div class="i-carbon-checkmark-filled" />
+                <p class="ml-3">Thank you for subscribing!</p>
+              </div>
+            )}
+          >
+            <form class="flex flex-col">
+              <h3 class="text-xl font-black mb-2">Subscribe to the waiting list</h3>
+              <div>
+                <label class="block text-gray-700 text-left text-xl font-bold" for="email">
+                  Enter your email...
+                </label>
+                <input
+                  onInput={(e) => { setValue(e.currentTarget.value) }}
+                  id="email"
+                  class="w-full p-4 rounded-xl mb-4"
+                  type="email"
+                  placeholder="john.doe@email.com"
+                  onBlur={validate}
+                />
+                <Show when={error()}>
+                  <p class="text-red-500 font-bold">Please enter a valid email</p>
+                </Show>
+              </div>
+              <input onClick={subscribe} type="submit" class="w-20 p-4 rounded-xl bg-gradient-to-l from-[#FFFADE] to-[#FFF7D0] text-black font-bold self-end cursor-pointer" value="JOIN" />
+            </form>
+          </Show>
+        </div>
         <div class="absolute bottom-10 left-0 right-0 flex justify-center">
           <ul class="flex space-x-5">
             <li>
               <a href="https://twitter.com/yournookapp" target="_blank" rel="noreferrer" class="cursor-pointer hover:text-[#ff85dd] transition-colors">
-              <div class="i-carbon-logo-twitter w-7 h-7" />
+                <div class="i-carbon-logo-twitter w-7 h-7" />
               </a>
             </li>
             <li>
               <a href="https://discord.gg/QXRMPDzXds" target="_blank" rel="noreferrer" class="cursor-pointer hover:text-[#ff85dd] transition-colors">
-              <div class="i-carbon-logo-discord w-7 h-7" />
+                <div class="i-carbon-logo-discord w-7 h-7" />
               </a>
             </li>
             <li>
               <a href="https://bat.glo.quebec/" target="_blank" rel="noreferrer" class="cursor-pointer hover:text-[#ff85dd] transition-colors">
-              <div class="i-carbon-bat w-7 h-7" />
+                <div class="i-carbon-bat w-7 h-7" />
               </a>
             </li>
           </ul>
