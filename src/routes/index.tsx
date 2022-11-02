@@ -140,8 +140,19 @@ export default function() {
           <For each={features}>{(feature, index) => <Feature {...feature} left={index() % 2 !== 0} />}</For>
         </ul>
       </div>
-      <div id="download" ref={backgroundDom} class="flex flex-col relative flex-center h-[100vh] overflow-hidden">
-        <h2 class="absolute max-w-full top-16 text-xl md:text-8xl uppercase font-black whitespace-nowrap  overflow-hidden">oon coming soon coming soon coming soon coming soon coming soon coming soon coming soon coming soon coming soon coming soon</h2>
+      <div class="p-12">
+        <h2 id="download" class="text-4xl sm:text-8xl mb-12">Download.</h2>
+        <div class="flex flex-center space-x-10">
+          <img class="w-[90%] mt-2 sm:mt-0 sm:w-[30%]" srcset="/assets/download.svg" />
+          <div class="flex h-[200px] p-12 rounded-lg bg-white shadow-2xl">
+            <a class="flex cursor-pointer hover:text-orange-200 transition-colors items-center" href="https://github.com/olgam4/nook" target="_blank" rel="noreferrer">
+              <p>Avaliable <i>right now</i> on GitHub</p>
+              <div class="i-carbon-logo-github w-28 h-28" />
+            </a>
+          </div>
+        </div>
+      </div>
+      <div ref={backgroundDom} class="flex flex-col relative flex-center h-[100vh] overflow-hidden">
         <div ref={card} class="flip hidden md:block relative">
           <div class="flip-content py-48 text-center sm:w-[600px] rounded-xl shadow-2xl bg-gradient-to-b from-[#FFC0FF] to-[#FFB5DD]">
             <p class="text-gray-700 sm:text-3xl top-0 sm:top-44 flip-front">Subscribe to the <button onClick={onWait} class="cursor-pointer underline underline-offset-4 text-gray-50 font-black ml-2 hover:text-[#A0003A] transition-colors">waiting list</button></p>
