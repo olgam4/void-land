@@ -142,14 +142,14 @@ export default function() {
       </div>
       <div class="p-12">
         <h2 id="download" class="text-4xl sm:text-8xl mb-12">Download.</h2>
-        <div class="flex flex-center space-x-10">
-          <img class="w-[90%] mt-2 sm:mt-0 sm:w-[30%]" srcset="/assets/download.svg" />
-          <div class="flex h-[200px] p-12 rounded-lg bg-white shadow-2xl">
+        <div class="flex flex-wrap sm:flex-row-reverse flex-center">
+          <div class="flex h-[200px] sm:ml-8 p-12 rounded-lg bg-white shadow-2xl">
             <a class="flex cursor-pointer hover:text-orange-200 transition-colors items-center" href="https://github.com/olgam4/nook" target="_blank" rel="noreferrer">
-              <p>Avaliable <i>right now</i> on GitHub</p>
+              <p class="text-center mr-2">Alpha avaliable <b><i>right now</i></b><br/> on GitHub</p>
               <div class="i-carbon-logo-github w-28 h-28" />
             </a>
           </div>
+          <img class="w-[90%] mt-5 sm:mt-0 sm:w-[30%] sm:mb-0" srcset="/assets/download.svg" />
         </div>
       </div>
       <div ref={backgroundDom} class="flex flex-col relative flex-center h-[100vh] overflow-hidden">
