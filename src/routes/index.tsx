@@ -50,12 +50,12 @@ export default function() {
       image: 'markdown.svg'
     },
     {
-      title: 'Powered by AI',
+      title: 'Powered by AI (WIP)',
       content: 'Nook uses AI to help you find your notes. It will also suggest tags for you, and help you find related notes. Easily translate your notes to other languages and utilize Nook to enhance your grammar.',
       image: 'ai-powered.svg'
     },
     {
-      title: 'CMS',
+      title: 'CMS (WIP)',
       content: 'Nook is a CMS. You can create, edit, and delete notes. You can also create and delete tags. Nook will automatically update your notes when you change a tag.',
       image: 'cms.svg'
     },
@@ -65,9 +65,24 @@ export default function() {
       image: 'own.svg'
     },
     {
-      title: 'Collaborate',
+      title: 'Collaborate (WIP)',
       content: 'Nook is built to be collaborative. You can share your notes with others, and they can edit them. You can also share your notes with the world. Hosting a collaboration server is as easy deploying a docker.',
       image: 'collaborate.svg'
+    },
+  ]
+
+  const prices = [
+    {
+      link: 'https://buy.stripe.com/14k4gseHs2gD1zO147',
+      price: 'Tip jar',
+    },
+    {
+      link: 'https://buy.stripe.com/9AQbIU2YK5sPemA28a',
+      price: '10.49$',
+    },
+    {
+      link: 'https://buy.stripe.com/eVabIU1UG2gD2DS5kl',
+      price: '94.49$',
     },
   ]
 
@@ -122,9 +137,10 @@ export default function() {
     <div>
       <div class="flex flex-col h-[100vh] w-[100vw] bg-gradient-to-tr from-[#ffafbd] to-[#ffc3a0]">
         <nav class="hidden sm:block absolute mt-4 md:mt-0 top-16 right-8 z-50">
-          <ul class="grid grid-cols-3 text-xl md:gap-6 gap-2 text-white">
+          <ul class="grid grid-cols-4 text-xl md:gap-1 gap-2 text-white">
             <li class="w-[100px] text-right"><a class="cursor-pointer hover:font-black transition-all" href="#features">Features</a></li>
             <li class="w-[100px] text-right"><a class="cursor-pointer hover:font-black transition-all" href="#download">Download</a></li>
+            <li class="w-[100px] text-right"><a class="cursor-pointer hover:font-black transition-all" href="#pricing">Pricing</a></li>
             <li class="w-[160px] text-right"><a class="flex cursor-pointer items-center hover:font-black transition-all" target="_blank" rel="noreferrer" href="https://discord.gg/QXRMPDzXds">Chat with us <div class="i-carbon-arrow-right ml-2" /></a></li>
           </ul>
         </nav>
@@ -140,16 +156,47 @@ export default function() {
           <For each={features}>{(feature, index) => <Feature {...feature} left={index() % 2 !== 0} />}</For>
         </ul>
       </div>
-      <div class="p-12">
+      <div class="p-12 h-[80vh] flex flex-col">
         <h2 id="download" class="text-4xl sm:text-8xl mb-12">Download.</h2>
-        <div class="flex flex-wrap sm:flex-row-reverse flex-center">
+        <div class="flex flex-wrap sm:flex-row-reverse flex-center justify-self-center">
           <div class="flex h-[200px] sm:ml-8 p-12 rounded-lg bg-white shadow-2xl">
             <a class="flex cursor-pointer hover:text-orange-200 transition-colors items-center" href="https://github.com/olgam4/nook" target="_blank" rel="noreferrer">
-              <p class="text-center mr-2">Alpha avaliable <b><i>right now</i></b><br/> on GitHub</p>
+              <p class="text-center mr-2">Alpha avaliable <b><i>right now</i></b><br /> on GitHub</p>
               <div class="i-carbon-logo-github w-28 h-28" />
             </a>
           </div>
           <img class="w-[90%] mt-5 sm:mt-0 sm:w-[30%] sm:mb-0" srcset="/assets/download.svg" />
+        </div>
+      </div>
+      <div id="pricing" class="p-12 mb-20 bg-gradient-to-b from-[#ffc3a0] to-gray-50">
+        <h2 class="text-4xl sm:text-8xl mb-12 text-white">Pricing.</h2>
+        <div class="flex justify-center text-gray-600 flex-col sm:flex-row sm:items-end">
+          <div class="rounded-2xl bg-gray-50 hover:scale-110 m-12 transition-transform shadow-2xl md:w-1/6 flex flex-col justify-between items-center h-72 p-10">
+            <h3 class="text-2xl font-bold">{prices[0].price}</h3>
+            <ul class="space-y-2 list-disc">
+              <li>Support the project</li>
+              <li>Recommended for enterprise use</li>
+            </ul>
+            <a class="px-10 py-3 rounded-2xl text-white uppercase font-bold bg-gradient-to-tr from-[#FFC0FF] to-[#FFB5DD]" href={prices[0].link}>Buy</a>
+          </div>
+          <div class="rounded-2xl text-black hover:scale-110 m-12 transition-transform shadow-2xl md:w-1/5 flex flex-col justify-between items-center sm:h-96 p-10 bg-gradient-to-tr from-[#FFC0FF] to-[#FFB5DD]">
+            <h3 class="text-3xl font-black text-white">{prices[1].price} / month</h3>
+            <ul class="space-y-2 list-disc">
+              <li>Get insider builds</li>
+              <li>Share your notes online WIP</li>
+              <li>Create unlimited notes</li>
+              <li>Sync your notes across devices WIP</li>
+            </ul>
+            <a class="px-10 py-3 rounded-2xl text-white bg-[#ffafbd] shadow-xl uppercase font-bold" href={prices[1].link}>Buy</a>
+          </div>
+          <div class="bg-gray-50 rounded-2xl hover:scale-110 m-12 transition-transform shadow-2xl md:w-1/6 flex flex-col justify-between items-center h-72 p-10">
+            <h3 class="text-2xl font-bold">{prices[2].price} / year</h3>
+            <div class="text-center"><b>Save 31.39$</b> on the monthly plan</div>
+            <ul class="flex flex-col justify-center items-center">
+              <li></li>
+            </ul>
+            <a class="px-10 py-3 text-white uppercase rounded-2xl font-bold bg-gradient-to-tr from-[#FFC0FF] to-[#FFB5DD]" href={prices[2].link}>Buy</a>
+          </div>
         </div>
       </div>
       <div ref={backgroundDom} class="flex flex-col relative flex-center h-[100vh] overflow-hidden">
