@@ -188,6 +188,9 @@ export default function() {
           </ul>
         </div>
       </div>
+    <div class="flex">
+      <a class="w-full text-center" href="/terms">Terms and Privacy</a>
+    </div>
     </div>
   )
 }
