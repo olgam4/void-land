@@ -6,7 +6,7 @@ import { Suspense } from 'solid-js'
 import { Toaster } from 'solid-toast'
 
 import './assets/global.css'
-import { ThemeProvider } from '@context/theme'
+import { FirebaseProvider } from '@context/firebase'
 
 export default function Root() {
   return (
@@ -21,11 +21,11 @@ export default function Root() {
         <Meta name="theme-color" content="#202A37" />
         <Title>Nook</Title>
       </Head>
-<script defer src="https://app.watchthem.live/pixel/vCqsKqNcRojJq5vd"></script>
+      <script defer src="https://app.watchthem.live/pixel/vCqsKqNcRojJq5vd"></script>
       <Body class="bg-gray-50">
         <ErrorBoundary>
           <Suspense>
-            <ThemeProvider>
+            <FirebaseProvider>
               <Routes>
                 <FileRoutes />
               </Routes>
@@ -39,7 +39,7 @@ export default function Root() {
                   duration: 5000,
                 }}
               />
-            </ThemeProvider>
+            </FirebaseProvider>
           </Suspense>
         </ErrorBoundary>
         <Scripts />

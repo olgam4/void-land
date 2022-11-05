@@ -71,17 +71,21 @@ export default function() {
     },
   ]
 
+  // TODO: link firebase accounts to stripe accounts
   const prices = [
     {
-      link: 'https://buy.stripe.com/14k4gseHs2gD1zO147',
+      // link: 'https://buy.stripe.com/14k4gseHs2gD1zO147',
+      link: '/account',
       price: 'Tip jar',
     },
     {
-      link: 'https://buy.stripe.com/9AQbIU2YK5sPemA28a',
+      // link: 'https://buy.stripe.com/9AQbIU2YK5sPemA28a',
+      link: '/account',
       price: '10.49$',
     },
     {
-      link: 'https://buy.stripe.com/eVabIU1UG2gD2DS5kl',
+      // link: 'https://buy.stripe.com/eVabIU1UG2gD2DS5kl',
+      link: '/account',
       price: '94.49$',
     },
   ]
