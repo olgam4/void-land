@@ -34,11 +34,11 @@ export default function() {
           initial={{ opacity: 0, x: props.left ? -200 : 200 }}
           inView={{ opacity: 1, x: 0 }}
           transition={{ duration: 2 }}
-          class={`flex flex-col sm:flex-row p-10 w-full shadow-black shadow-2xl bg-gradient-to-l from-[#FFB5DD] to-[#FFC0FF] sm:w-7/12 text-[#2f4858] rounded-xl mb-12 ${props.left && 'sm:ml-auto'}`}
+          class={`flex flex-col ${props.left? 'sm:flex-row-reverse' : 'sm:flex-row'} p-10 w-full shadow-black shadow-2xl bg-white sm:w-7/12 text-[#2f4858] rounded-xl mb-12 ${props.left && 'sm:ml-auto'}`}
         >
           <div>
-            <h3 class="text-2xl font-bold">{props.title}</h3>
-            <p>{props.content}</p>
+            <h3 class="text-lg lg:text-4xl bg-[#2F4858] rounded-full px-5 py-2 mb-4 font-black text-[#FFB5DD] uppercase ">{props.title}</h3>
+            <p class="pl-8">{props.content}</p>
           </div>
           <img class="w-[90%] mt-2 sm:mt-0 sm:w-[50%]" srcset={`/assets/${props.image}`} />
         </Motion.div>
@@ -79,7 +79,6 @@ export default function() {
     },
   ]
 
-  // TODO: link firebase accounts to stripe accounts
   const prices = [
     {
       link: '/account?plan=14k4gseHs2gD1zO147',

@@ -19,13 +19,9 @@ export default function() {
       window.location.href = 'https://buy.stripe.com/' + plan
       // window.location.href = 'https://buy.stripe.com/test_cN22aLfBB3Oma64bII'
     }
-
-
   })
 
   return (
-    <div>
-
-    </div>
+    <div />
   )
 }
