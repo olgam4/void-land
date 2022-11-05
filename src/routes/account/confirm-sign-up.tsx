@@ -1,6 +1,6 @@
 import { FirebaseContext } from '@context/firebase'
 import { isSignInWithEmailLink, signInWithEmailLink } from 'firebase/auth'
-import { doc, setDoc } from 'firebase/firestore'
+import { doc, setDoc, } from 'firebase/firestore'
 import { useNavigate } from 'solid-start'
 import toast from 'solid-toast'
 import Account from '.'
@@ -11,12 +11,27 @@ export default function() {
   const [password, setPassword] = createSignal('')
   const [verify, setVerify] = createSignal('')
   const [saving, setSaving] = createSignal(false)
+  const [alreadySignedUp, setAlreadySignedUp] = createSignal(false)
 
   const navigate = useNavigate()
 
+  createEffect(async () => {
+    const result = await fetch('/api/subscribe', {
+      method: 'POST',
+    })
+    const data = await result.json()
+    data && setAlreadySignedUp(data.alreadySignedUp)
+  })
+
+  createEffect(on(alreadySignedUp, () => {
+    if (alreadySignedUp()) {
+      navigate('/account/settings')
+    }
+  }))
+
   createEffect(() => {
     if (!state.auth) return
-    if (!isSignInWithEmailLink(state.auth, window.location.href)) navigate('/account')
+    if (!isSignInWithEmailLink(state.auth, window.location.href)) return
 
     let email = window.localStorage.getItem('emailForSignIn')
 
@@ -25,13 +40,20 @@ export default function() {
     }
 
     signInWithEmailLink(state.auth, email, window.location.href)
-      .then((result) => {
+      .then(async () => {
         window.localStorage.removeItem('emailForSignIn')
-        if(!(result as any).additionalUserInfo!.isNewUser) navigate('/settings')
+        const result = await fetch('/api/subscribe', {
+          method: 'POST',
+        })
+        const data = await result.json()
+        if (data.alreadySignedUp) {
+          toast.success('Welcome to Nook!')
+          navigate('/account/confirm-sign-up')
+        } else {
+          navigate('/account/settings')
+        }
       })
       .catch((error) => {
-        console.log(error.code)
-        console.log(error.message)
         if (error.code === 'auth/invalid-action-code') {
           toast.error('Oops, that link is no longer valid')
           navigate('/account')

@@ -1,11 +1,12 @@
 import logo from '@assets/logo.png'
 import { FirebaseContext } from '@context/firebase'
 import { getRedirectResult, GoogleAuthProvider, sendSignInLinkToEmail, signInWithRedirect } from 'firebase/auth'
-import { useNavigate } from 'solid-start'
+import { useLocation, useNavigate } from 'solid-start'
 import toast from 'solid-toast'
 
 const actionCodeSettings = {
-  url: 'http://nook.glo.quebec/account/confirm-sign-up',
+  url: 'https://nook.glo.quebec/account/confirm-sign-up',
+  // url: 'http://localhost:3000/account/confirm-sign-up',
   handleCodeInApp: true,
 }
 
@@ -14,20 +15,36 @@ export default function() {
   const [email, setEmail] = createSignal('')
   const [saving, setSaving] = createSignal(false)
   const navigate = useNavigate()
+  const location = useLocation()
 
   createEffect(() => {
     if (!state.auth) return
+    if (location.pathname.includes('confirm-sign-up')) return
 
-    // TODO: redirect to stripe settings
-    const redirectTo = '/'
+    const redirectTo = '/account/settings'
 
     getRedirectResult(state.auth)
       .then((result) => {
-        if (result?.user) {
+        if (!result?.user) return
+        if (result.user.metadata?.lastSignInTime === result.user.metadata?.creationTime) {
+          window.localStorage.setItem('emailForSignIn', result.user.email!)
+          toast.success('Welcome to Nook!')
+          navigate('/account/confirm-sign-up')
+        } else {
           navigate(redirectTo)
         }
+
       })
     if (state.auth?.currentUser) navigate(redirectTo)
+  })
+
+  createEffect(() => {
+    const params = new URLSearchParams(location.search)
+    const plan = params.get('plan') || 'none'
+
+    if (plan) {
+      localStorage.setItem('plan', plan)
+    }
   })
 
   const onSubmit = (e: Event) => {
@@ -57,7 +74,6 @@ export default function() {
   }
 
   const signWithGoogle = () => {
-    console.log('signWithGoogle')
     if (!state.auth) return
     const provider = new GoogleAuthProvider()
     signInWithRedirect(state.auth, provider)
@@ -65,7 +81,7 @@ export default function() {
         toast.success('Signed in with Google')
       })
       .catch((error) => {
-        console.log(error)
+        console.error(error)
         toast.error('Something went wrong')
       })
   }
@@ -113,6 +129,3 @@ export default function() {
     </div>
   )
 }
-
-
-

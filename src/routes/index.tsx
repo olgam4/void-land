@@ -9,7 +9,7 @@ type FeatureProps = {
   content: string
   image: string
 }
-//
+
 // TODO: Add a Download
 // <div class="p-12 h-[80vh] flex flex-col">
 //   <h2 id="download" class="text-4xl sm:text-8xl mb-12">Download.</h2>
@@ -82,18 +82,15 @@ export default function() {
   // TODO: link firebase accounts to stripe accounts
   const prices = [
     {
-      // link: 'https://buy.stripe.com/14k4gseHs2gD1zO147',
-      link: '/account',
+      link: '/account?plan=14k4gseHs2gD1zO147',
       price: 'Tip jar',
     },
     {
-      // link: 'https://buy.stripe.com/9AQbIU2YK5sPemA28a',
-      link: '/account',
+      link: '/account?plan=9AQbIU2YK5sPemA28a',
       price: '10.49$',
     },
     {
-      // link: 'https://buy.stripe.com/eVabIU1UG2gD2DS5kl',
-      link: '/account',
+      link: '/account?plan=eVabIU1UG2gD2DS5kl',
       price: '94.49$',
     },
   ]
