@@ -120,8 +120,16 @@ export default function() {
         </nav>
         <h1 class="h-[9%] mt-4 pl-4 sm:pl-12 text-amber-50 relative nook-shadow flex items-center">Nook</h1>
         <h2 class="h-[3%] mt-4 pl-4 sm:pl-12 text-[#2f4858]">Markdown-Powered Intelligent Knowledge Manager</h2>
-        <div class="h-[88%] flex justify-center">
+        <div class="h-[60%] mt-4 flex justify-center">
           <Image class="object-contain" src={NookScreenshot} />
+        </div>
+        <div>
+          <div class="absolute bottom-32 left-0 right-0 h-[10%] flex justify-center items-center">
+            <a href="/account" class="flex items-center hover:scale-110 hover:text-gray-400 transition-all shadow-2xl rounded-full text-gray-600 font-medium text-4xl p-12 bg-gradient-to-b from-[#FFB5DD] to-[#FFC0FF]">
+              Start your journey
+              <div class="i-uiw-arrow-right ml-5" />
+            </a>
+          </div>
         </div>
       </div>
       <div class="bg-[#2f4858] text-white p-12 overflow-x-clip">

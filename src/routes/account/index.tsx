@@ -79,7 +79,7 @@ export default function() {
             Sign in / up with
           </h1>
           <div class="flex w-full justify-center space-x-4">
-            <a class="rounded-2xl flex-1 p-5 flex flex-center bg-gradient-to-tr from-[#ffafbd] to-[#ffc3a0]" onClick={signWithGoogle}>
+            <a class="rounded-2xl cursor-pointer flex-1 p-5 flex flex-center bg-gradient-to-tr from-[#ffafbd] to-[#ffc3a0]" onClick={signWithGoogle}>
               <div class="i-carbon-logo-google w-8 h-8" />
             </a>
           </div>
