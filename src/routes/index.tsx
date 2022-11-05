@@ -119,15 +119,14 @@ export default function() {
           </ul>
         </nav>
         <h1 class="h-[9%] mt-4 pl-4 sm:pl-12 text-amber-50 relative nook-shadow flex items-center">Nook</h1>
-        <h2 class="h-[3%] mt-4 pl-4 sm:pl-12 text-[#2f4858]">Markdown-Powered Intelligent Knowledge Manager</h2>
+        <h2 class="h-[3%] mt-4 pl-4 sm:pl-12 text-[#2f4858] opacity-20">Markdown-Powered Intelligent Knowledge Manager</h2>
         <div class="h-[60%] mt-4 flex justify-center">
           <Image class="object-contain" src={NookScreenshot} />
         </div>
         <div>
-          <div class="absolute bottom-32 left-0 right-0 h-[10%] flex justify-center items-center">
-            <a href="/account" class="flex items-center hover:scale-110 hover:text-gray-400 transition-all shadow-2xl rounded-full text-gray-600 font-medium text-4xl p-12 bg-gradient-to-b from-[#FFB5DD] to-[#FFC0FF]">
-              Start your journey
-              <div class="i-uiw-arrow-right ml-5" />
+          <div class="absolute bottom-20 sm:bottom-32 left-0 right-0 h-[10%] flex justify-center items-center">
+            <a href="/account" class="flex items-center hover:scale-110 hover:text-gray-400 transition-all shadow-2xl rounded-full text-white font-black text-2xl sm:text-4xl p-4 mx-4 text-center sm:p-12 bg-[#2F4858] uppercase">
+              Start your journey now
             </a>
           </div>
         </div>
@@ -140,8 +139,8 @@ export default function() {
       </div>
       <div id="pricing" class="p-12 mb-20 bg-gradient-to-b from-[#ffc3a0] to-gray-50">
         <h2 class="text-4xl sm:text-8xl mb-12 text-white">Pricing.</h2>
-        <div class="flex justify-center text-gray-600 flex-col sm:flex-row sm:items-end">
-          <div class="rounded-2xl bg-gray-50 hover:scale-110 m-12 transition-transform shadow-2xl md:w-1/6 flex flex-col justify-between items-center h-72 p-10">
+        <div class="flex justify-center text-gray-600 flex-col md:flex-row md:items-end">
+          <div class="rounded-2xl bg-gray-50 hover:scale-110 mb-3 md:m-12 transition-transform shadow-2xl md:max-w-1/6 flex flex-col justify-between items-center h-72 p-10">
             <h3 class="text-2xl font-bold">{prices[0].price}</h3>
             <ul class="space-y-2 list-disc">
               <li>Support the project</li>
@@ -149,7 +148,7 @@ export default function() {
             </ul>
             <a class="px-10 py-3 rounded-2xl text-white uppercase font-bold bg-gradient-to-tr from-[#FFC0FF] to-[#FFB5DD]" href={prices[0].link}>Buy</a>
           </div>
-          <div class="rounded-2xl text-black hover:scale-110 m-12 transition-transform shadow-2xl md:w-1/5 flex flex-col justify-between items-center sm:h-96 p-10 bg-gradient-to-tr from-[#FFC0FF] to-[#FFB5DD]">
+          <div class="rounded-2xl text-black hover:scale-110 mb-3 md:m-2 transition-transform md:min-w-fit shadow-2xl md:max-w-1/5 flex flex-col justify-between items-center sm:h-96 p-10 bg-gradient-to-tr from-[#FFC0FF] to-[#FFB5DD]">
             <h3 class="text-3xl font-black text-white">{prices[1].price} / month</h3>
             <ul class="space-y-2 list-disc">
               <li>Get insider builds</li>
@@ -157,9 +156,9 @@ export default function() {
               <li>Create unlimited notes</li>
               <li>Sync your notes across devices WIP</li>
             </ul>
-            <a class="px-10 py-3 rounded-2xl text-white bg-[#ffafbd] shadow-xl uppercase font-bold" href={prices[1].link}>Buy</a>
+            <a class="px-10 py-3 rounded-2xl text-white bg-[#2f4858] shadow-xl uppercase font-bold" href={prices[1].link}>Buy</a>
           </div>
-          <div class="bg-gray-50 rounded-2xl hover:scale-110 m-12 transition-transform shadow-2xl md:w-1/6 flex flex-col justify-between items-center h-72 p-10">
+          <div class="bg-gray-50 rounded-2xl hover:scale-110 mb-3 md:m-12 transition-transform shadow-2xl  flex flex-col justify-between items-center h-72 p-10">
             <h3 class="text-2xl font-bold">{prices[2].price} / year</h3>
             <div class="text-center"><b>Save 31.39$</b> on the monthly plan</div>
             <ul class="flex flex-col justify-center items-center">
